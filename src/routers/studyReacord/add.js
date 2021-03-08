@@ -3,7 +3,7 @@ const StudyRecordCollection = require("../../data/models/StudyRecord");
 
 async function add(req,res,next){
     try{
-        const mockData = _.times(10,x=>({
+        const mockData = _.times(2,x=>({
             date:Date.now(),
             time:x,
             info:"这是mock数据"
