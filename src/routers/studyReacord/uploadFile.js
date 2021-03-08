@@ -13,7 +13,7 @@ async function uploadFile(req, res, next){
         await fs.rename(oldPath,newPath)
         res.end('success');
     }catch (e){
-        console.error("查询StudyRecord报错：" + e.message)
+        console.error("上传StudyRecord报错：" + e.message)
     }
 }
 
