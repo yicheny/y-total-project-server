@@ -7,7 +7,7 @@ async function deleteAll(req,res,next){
         res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});
         res.end('数据删除成功');
     }catch (e){
-        console.error("删除数据报错：" + e.message);
+        console.error("删除StudyRecord数据报错：" + e.message);
     }
 }
 module.exports = deleteAll;

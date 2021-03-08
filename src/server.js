@@ -6,6 +6,7 @@ const studyRecord = require('./routers/studyReacord');
 
 const app = express();
 app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
