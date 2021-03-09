@@ -9,16 +9,11 @@ const uploadFileMulter = multer({dest: savePath})
 
 async function uploadFile(req, res, next){
     try{
-        // console.log('req',req.files);
-        const {filename,originalname} = req.files[0];
-        const oldPath = savePath.concat(filename);
-        const newPath = savePath.concat(originalname);
-        await fs.rename(oldPath,newPath)
-        const text = await fs.readFile(newPath,'utf-8');
-        const data = transformDataFromText(text,newPath);
         const {isClear} = req.body;
         if(isClear==='true') await StudyRecordCollection.deleteMany();
-        await StudyRecordCollection.create(data);
+        for(let i=0; i<=(req.files.length-1);i++){
+            await uploadFileOne(req.files[i],isClear);
+        }
         res.end('success');
     }catch (e){
         const errorInfo = "上传StudyRecord报错：" + e.message;
@@ -29,6 +24,16 @@ async function uploadFile(req, res, next){
 
 exports.uploadFile = uploadFile;
 exports.uploadFileMulter = uploadFileMulter;
+
+async function uploadFileOne(file){
+    const {filename,originalname} = file;
+    const oldPath = savePath.concat(filename);
+    const newPath = savePath.concat(originalname);
+    await fs.rename(oldPath,newPath)
+    const text = await fs.readFile(newPath,'utf-8');
+    const data = transformDataFromText(text,newPath);
+    await StudyRecordCollection.create(data);
+}
 
 function transformDataFromText(text,path){
     const infoList = compose(filterEmptyInfo,infoListFor)(text);
