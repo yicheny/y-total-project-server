@@ -6,7 +6,10 @@ async function add(req,res,next){
         const mockData = _.times(2,x=>({
             date:Date.now(),
             time:x,
-            info:"这是mock数据"
+            info:{
+                studyInfo:["这是studyInfo"],
+                reviewInfo:["这是reviewInfo"]
+            }
         }));
         await StudyRecordCollection.create(mockData);
         res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'});

@@ -1,0 +1,1 @@
+exports.compose = require("./compose");

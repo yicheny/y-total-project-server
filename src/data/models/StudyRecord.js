@@ -13,8 +13,8 @@ const StudyRecordSchema = mongoose.Schema({
         required:true,
     },
     info:{
-        type:String,
-        required:true,
+        studyInfo: [String],
+        reviewInfo: [String],
     }
 },{
     timestamps:{
