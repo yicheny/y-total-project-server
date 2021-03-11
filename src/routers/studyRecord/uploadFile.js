@@ -16,7 +16,10 @@ async function uploadFile(req, res, next){
         }
         API.success(res);
     }catch (e){
-        console.log("上传StudyRecord报错：" + e.message);
+        console.log('studyRecord上传报错：')
+        console.error(e)
+        // console.log("上传StudyRecord报错：" + e.message);
+        API.fail(res,e.message)
     }
 }
 
@@ -42,7 +45,9 @@ function transformDataFromText(text,path){
     }
 
     function filterEmptyInfo(list){
-        return list.filter(x=>x);
+        return list.filter(x=>{
+            return x.trim().length !== 0
+        });
     }
 
     function createInfoItem(x){
