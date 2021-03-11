@@ -1,4 +1,4 @@
-const StudyRecordCollection = require("../../data/models/StudyRecord");
+const { StudyRecordCollection } = require("../../data/models");
 const {API} = require("../../utils");
 
 async function deleteMany(req,res,next){

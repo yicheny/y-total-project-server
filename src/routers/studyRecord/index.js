@@ -7,7 +7,6 @@ const {uploadFile,uploadFileMulter} = require('./uploadFile');
 const downloadFile = require('./downloadFile');
 
 const router = express.Router();
-
 router.get('/query',query);
 router.get('/add',add);
 router.post('/delete',deleteMany);

@@ -1,5 +1,5 @@
 const _ = require("lodash");
-const StudyRecordCollection = require("../../data/models/StudyRecord");
+const {StudyRecordCollection} = require("../../data/models");
 const {API} = require("../../utils");
 
 async function add(req,res,next){

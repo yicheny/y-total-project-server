@@ -2,7 +2,7 @@ const fs = require('fs').promises;
 const _ = require('lodash')
 const multer = require('multer');
 const {compose,API} = require("../../utils");
-const StudyRecordCollection = require("../../data/models/StudyRecord");
+const { StudyRecordCollection } = require("../../data/models");
 
 const savePath = './static/';
 const uploadFileMulter = multer({dest: savePath})

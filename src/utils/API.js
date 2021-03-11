@@ -7,6 +7,15 @@ class API{
         };
         res.status(200).send(info);
     }
+
+    static fail(res,message='请求失败'){
+        const info = {
+            code:2000,
+            data:null,
+            message
+        };
+        res.status(200).send(info);
+    }
 }
 
 module.exports = API;
