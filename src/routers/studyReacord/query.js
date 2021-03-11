@@ -1,9 +1,10 @@
 const StudyRecordCollection = require("../../data/models/StudyRecord");
+const {API} = require("../../utils");
 
 async function query(req,res,next){
     try{
         const data = await StudyRecordCollection.find();
-        res.json(data);
+        API.success(res,data)
     }catch (e){
         console.error("查询StudyRecord报错：" + e.message)
     }

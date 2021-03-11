@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const _ = require('lodash')
 const multer = require('multer');
-const {compose} = require("../../utils");
+const {compose,API} = require("../../utils");
 const StudyRecordCollection = require("../../data/models/StudyRecord");
 
 const savePath = './static/';
@@ -14,11 +14,9 @@ async function uploadFile(req, res, next){
         for(let i=0; i<=(req.files.length-1);i++){
             await uploadFileOne(req.files[i],isClear);
         }
-        res.end('success');
+        API.success(res);
     }catch (e){
-        const errorInfo = "上传StudyRecord报错：" + e.message;
-        console.log(errorInfo);
-        // res.status(401).send(errorInfo);
+        console.log("上传StudyRecord报错：" + e.message);
     }
 }
 
