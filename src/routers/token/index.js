@@ -7,7 +7,7 @@ const jwtAuth = expressJwt({
     secret: config.secret,
     algorithms: ['HS256'],
     getToken:(req)=>{
-        return req.headers.uuid;
+        return req.headers.uuid || req.query.uuid;
     }
     // credentialsRequired: false
 }).unless({
