@@ -13,7 +13,7 @@ async function login(req,res,next){
         if(userInfoArray.length > 1) return API.fail(res,'异常：查找到多个用户');
         const userInfo = _.head(userInfoArray);
         const token = jwt.sign(userInfo.toJSON(),config.secret,{
-            expiresIn:60*30 //过时时长，单位：秒
+            expiresIn:60 * 60 * 2, //过时时长，单位：秒
         });
         API.success(res,{ uuid: token })
     }catch(e){

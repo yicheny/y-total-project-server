@@ -8,9 +8,9 @@ class API{
         res.status(200).send(info);
     }
 
-    static fail(res,message='请求失败'){
+    static fail(res,message='请求失败',code=2000){
         const info = {
-            code:2000,
+            code,
             data:null,
             message
         };
