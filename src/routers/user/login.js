@@ -15,7 +15,13 @@ async function login(req,res,next){
         const token = jwt.sign(userInfo.toJSON(),config.secret,{
             expiresIn:60 * 60 * 2, //过时时长，单位：秒
         });
-        API.success(res,{ uuid: token })
+        API.success(res,getResponse(userInfo.toJSON()));
+
+        function getResponse(user){
+            const res = _.omit(user,'_id');
+            res.id = user._id;
+            return { uuid: token,...res }
+        }
     }catch(e){
         console.log("登录出错:" );
         console.error(e)
