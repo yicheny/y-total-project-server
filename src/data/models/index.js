@@ -1,3 +1,6 @@
 exports.StudyRecordCollection = require('./StudyRecord');
 exports.UserCollection = require('./User');
-exports.OvertimeRecordCollection = require('./OvertimeRecord');
+
+const {OvertimeRecordCollection,OvertimeApplyRecordCollection} = require('./OvertimeRecord');
+exports.OvertimeRecordCollection = OvertimeRecordCollection;
+exports.OvertimeApplyRecordCollection = OvertimeApplyRecordCollection;

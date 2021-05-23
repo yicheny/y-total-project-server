@@ -27,4 +27,5 @@ const OvertimeRecordSchema = mongoose.Schema({
     }
 });
 
-module.exports = conn.model('overtime-record', OvertimeRecordSchema);
+module.exports.OvertimeRecordCollection = conn.model('overtime-record', OvertimeRecordSchema);
+module.exports.OvertimeApplyRecordCollection = conn.model("overtime-apply-record",OvertimeRecordSchema);
