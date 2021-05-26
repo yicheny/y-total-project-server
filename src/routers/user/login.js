@@ -1,12 +1,12 @@
 const _ = require('lodash');
 const multiparty = require('multiparty');
-const {API} = require("../../utils");
+const {API,tryExecute} = require("../../utils");
 const { UserCollection } = require("../../data/models");
 const {config} = require('../../base');
 const jwt = require('jsonwebtoken');
 
 async function login(req,res,next){
-    try{
+    tryExecute("登录出错",async ()=>{
         const formParams = await getFormParams(req);
         const userInfoArray = await UserCollection.find(_.pick(formParams,['name','password']));
         if(userInfoArray.length === 0) return API.fail(res,'用户不存在或密码错误');
@@ -22,10 +22,7 @@ async function login(req,res,next){
             res.id = user._id;
             return { uuid: token,...res }
         }
-    }catch(e){
-        console.log("登录出错:" );
-        console.error(e)
-    }
+    })
 }
 
 module.exports = login;
