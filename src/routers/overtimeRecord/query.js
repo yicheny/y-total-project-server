@@ -6,7 +6,7 @@ function defaultAll(value,filter){
 }
 
 async function query(req,res){
-    tryExecute('查询OvertimeRecord报错',async ()=>{
+    tryExecute(res,'查询OvertimeRecord',async ()=>{
         const {name,date,duration,createdAt} = req.body;
         const data = await OvertimeRecordCollection.find({
             name:defaultAll(name,{$in:name}) ,

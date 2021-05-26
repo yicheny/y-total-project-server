@@ -50,3 +50,37 @@ async function validate(err,req,res,next){
     }
 }
 ```
+
+## 解析携带数据
+场景：在应用中需要进行权限验证，需要用到账号信息，如何获取用户信息？【每次请求需要携带，最好有个加密，实际上现在的`token`正是通过加密用户信息得到的】
+
+`express-jwt`其实提供了解析`uuid`【需要密钥】并挂到`req`的功能，支持自定义挂载的属性。
+
+首先是配置自定义挂载属性：
+```js
+const expressJwt = require('express-jwt');
+const jwtAuth = expressJwt({
+    secret: config.secret,
+    algorithms: ['HS256'],
+    getToken:(req)=>{
+        return req.headers.uuid || req.query.uuid;
+    },
+    requestProperty:'auth.token' //注意这一行！
+}).unless({
+    path: ['/user/login']
+});
+```
+
+然后是使用：
+```js
+//这个某个接口对应的方法
+async function add(req,res,next){
+    console.log(req.anth.toekn);//获取自定义挂载的信息
+}
+```
+
+稍微提一下加密的过程：
+```js
+//userInfo就是加密的内容，之后会被解析挂载到自定义属性上
+const token = jwt.sign(userInfo.toJSON(),config.secret)
+```

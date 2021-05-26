@@ -8,7 +8,8 @@ const jwtAuth = expressJwt({
     algorithms: ['HS256'],
     getToken:(req)=>{
         return req.headers.uuid || req.query.uuid;
-    }
+    },
+    requestProperty:'auth.token'
     // credentialsRequired: false
 }).unless({
     path: ['/user/login']

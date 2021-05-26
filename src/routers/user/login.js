@@ -6,7 +6,7 @@ const {config} = require('../../base');
 const jwt = require('jsonwebtoken');
 
 async function login(req,res,next){
-    tryExecute("登录出错",async ()=>{
+    tryExecute(res,"登录",async ()=>{
         const formParams = await getFormParams(req);
         const userInfoArray = await UserCollection.find(_.pick(formParams,['name','password']));
         if(userInfoArray.length === 0) return API.fail(res,'用户不存在或密码错误');
