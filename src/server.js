@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const { studyRecord, user, token,overtimeRecord,overtimeApplyRecord } = require('./routers');
+const { validateAuth } = require('./middlewares');
 
 const app = express();
 app.use(cors());
@@ -10,6 +11,7 @@ app.use(bodyParser.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ extended: false, limit: "10mb" }));
 
 app.use(token);
+app.use(validateAuth);
 app.use('/user', user);
 app.use('/study-record', studyRecord);
 app.use('/overtime-record',overtimeRecord)

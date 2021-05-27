@@ -12,7 +12,7 @@ const jwtAuth = expressJwt({
     requestProperty:'auth.token'
     // credentialsRequired: false
 }).unless({
-    path: ['/user/login']
+    path: config.noValidateUrls
 });//这里设置的不需要验证的接口
 
 const router = express.Router();
