@@ -1,4 +1,5 @@
 const express = require('express');
+const multer  = require('multer');
 
 const query = require('./query');
 const add = require('./add');
@@ -10,6 +11,6 @@ const router = express.Router();
 router.post('/add',add);
 router.post('/query',query)
 router.get('/remove',remove)
-router.post('/upload',upload)
+router.post('/upload',multer().any(),upload)
 
 module.exports = router;
