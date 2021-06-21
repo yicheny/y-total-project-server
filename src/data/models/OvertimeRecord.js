@@ -19,6 +19,10 @@ const OvertimeRecordSchema = mongoose.Schema({
     memo: {
         type: String,
         require:true
+    },
+    used: {
+        type: Boolean,
+        default:false
     }
 }, {
     timestamps: {
