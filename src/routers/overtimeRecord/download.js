@@ -64,8 +64,8 @@ function getWorkBook(data){
         function getHeader(){
             return [
                 {
-                    [HeaderEnums.name]:"姓名",
-                    [HeaderEnums.date]:"日期",
+                    [HeaderEnums.name]:"加班人员",
+                    [HeaderEnums.date]:"加班日期",
                     [HeaderEnums.duration]:"时长",
                     [HeaderEnums.memo]:"备注",
                     [HeaderEnums.used]:"是否使用",
